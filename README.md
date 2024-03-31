@@ -11,11 +11,11 @@
 #### Dentro de la carpeta *Validation* encontraremos distintos archivos para poder hacer nuestras validaciones personalizadas mediante anotaciones dentro de nuestros @Entity.
 
 <p>
-**Todas las Evaluaciones se hacen con PostMan**
+Todas las Evaluaciones se hacen con PostMan
 </p>
 
 <p>
-*La aplicación cuenta con 3 @Entity (Product, Role y User), cuyas vistas de los productos y gestion vamn a estar determinados por el tipo de acceso y Rol del User.*
+La aplicación cuenta con 3 @Entity (Product, Role y User), cuyas vistas de los productos y gestion vamn a estar determinados por el tipo de acceso y Rol del User.
 </p>
 
 <p align="center">
