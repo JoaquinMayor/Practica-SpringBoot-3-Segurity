@@ -15,19 +15,19 @@ public class ProductValidation implements Validator{
     }
 
     @Override
-    public void validate(Object target, Errors errors) { //Es un método que luego se usuará en el controlador, el primer parametro es el elemento a validar y el segundo es el BindingResult
+    public void validate(Object target, Errors errors) { //Es un método que luego se usará en el controlador, el primer parámetro es el elemento a validar y el segundo es el BindingResult
        Product product = (Product)target;
-       ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", null,"es Requerido!");  //ValidationUtils tiene varios métodos de validación, en los parametros se suele pasar primero el error, luego el atributo a validar como string y el mensaje de error
+       ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", null,"es Requerido!");  //ValidationUtils tiene varios métodos de validación, en los parámetros se suele pasar primero el error, luego el atributo a validar como string y el mensaje de error
        //ValidationUtils.rejectIfEmptyOrWhitespace(errors, "description", "NotBlanck.product.description");  
        
-       if(product.getDescription() == null || product.getDescription().isBlank()){ //Manera aun más personalizada y gestionada
+       if(product.getDescription() == null || product.getDescription().isBlank()){ //Manera aún más personalizada y gestionada
             errors.rejectValue("description", null, "es requerido por favor!");
        }
 
        if(product.getPrice()== null ){
         errors.rejectValue("price", null,"no puede ser nulo ok?");
        }else if(product.getPrice() < 500){
-        errors.rejectValue("price", null,"debe se un  número mayot o iguala 500");
+        errors.rejectValue("price", null,"debe ser un número mayor o igual a 500");
        }
     }
     

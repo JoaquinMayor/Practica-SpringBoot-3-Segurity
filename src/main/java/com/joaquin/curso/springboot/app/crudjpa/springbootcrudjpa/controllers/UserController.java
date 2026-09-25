@@ -20,7 +20,7 @@ import com.joaquin.curso.springboot.app.crudjpa.springbootcrudjpa.services.IUser
 
 import jakarta.validation.Valid;
 
-@CrossOrigin(origins = "http://localhost:4200") // Para comincar con el front-end, primero ponemos en origin la dirección del frontend
+@CrossOrigin(origins = "http://localhost:4200") // Para comunicar con el front-end, primero ponemos en origin la dirección del frontend
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -33,7 +33,7 @@ public class UserController {
     }
     @PostMapping
     public ResponseEntity<?> create(@Valid @RequestBody User user, BindingResult result){
-        if(result.hasFieldErrors()){//Esto es si ocurre algun error
+        if(result.hasFieldErrors()){//Esto es si ocurre algún error
             return validation(result);
         }
         return ResponseEntity.status(HttpStatus.CREATED).body(service.save(user));
@@ -41,7 +41,7 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@Valid @RequestBody User user, BindingResult result){
-        if(result.hasFieldErrors()){//Esto es si ocurre algun error
+        if(result.hasFieldErrors()){//Esto es si ocurre algún error
             return validation(result);
         }
         user.setAdmin(false);
@@ -50,7 +50,7 @@ public class UserController {
 
     private ResponseEntity<Map<String, String>> validation(BindingResult result){
         Map<String, String> errors = new HashMap<>();
-        result.getFieldErrors().forEach(err ->{ //Da una lista de mensajesel getFieldErrors y lo recorremos para ir creando los mensajes
+        result.getFieldErrors().forEach(err ->{ //Da una lista de mensajes el getFieldErrors y lo recorremos para ir creando los mensajes
             errors.put(err.getField(), "El campo " + err.getField() + " " + err.getDefaultMessage());
         });
         return ResponseEntity.badRequest().body(errors); //Siempre que se pasa un status 400 se hace un badRequest

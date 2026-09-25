@@ -55,7 +55,7 @@ public class User {
     private boolean enabled;
 
     @Transient //Esto indica que no es un atributo que tenga que manejar con la base de datos, sino que solo de la app
-    private boolean admin; //Va a funcionar como una bandera para ver si se le asigana el rol de admin o no
+    private boolean admin; //Va a funcionar como una bandera para ver si se le asigna el rol de admin o no
 
 
     

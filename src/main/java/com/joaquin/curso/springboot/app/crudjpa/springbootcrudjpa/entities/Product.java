@@ -26,16 +26,16 @@ public class Product {
     @IsRequired
      private String sku;
 
-    @NotEmpty(message="{NotEmpty.product.name}") //Validación de que no sea vacio, se usa en Strings, para los objetos se usa @NotNull
+    @NotEmpty(message="{NotEmpty.product.name}") //Validación de que no sea vacío, se usa en Strings, para los objetos se usa @NotNull
     @Size(min=3, max=20)//Determina el mínimo y el máximo del String
-    private String name; //Para editar el mensaje primero lo ponemos en el properties (correctamente configurado), y luego le podemos editar caracteristicas, en este caso el mensaje
+    private String name; //Para editar el mensaje primero lo ponemos en el properties (correctamente configurado), y luego le podemos editar características, en este caso el mensaje
     
-    //@Pattern Para hacer un tipo de validqación personalizada
-    @Min(value = 500, message = "{Min.product.price}") //Valida que el valor mínimo sea 500, tambien existe el @Max
+    //@Pattern Para hacer un tipo de validación personalizada
+    @Min(value = 500, message = "{Min.product.price}") //Valida que el valor mínimo sea 500, también existe el @Max
     @NotNull(message = "{NotNull.product.price}")
     private Integer price;
     
-    //@NotBlank(message = "{NotBlanck.product.description}") //Valida que el atributo no este vacio o tenga un caracter en blanco
+    //@NotBlank(message = "{NotBlanck.product.description}") //Valida que el atributo no esté vacío o tenga un carácter en blanco
     @IsRequired
     private String description;
     

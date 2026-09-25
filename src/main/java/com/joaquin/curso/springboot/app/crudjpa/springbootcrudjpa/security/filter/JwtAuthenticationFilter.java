@@ -43,7 +43,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             String password = null;
 
             try {
-                user = new ObjectMapper().readValue(request.getInputStream(), User.class); //Del reques viene nuestro json con el usuario que manejamos en el jpauserDetailsService y con el primer parámetro le pasamos el json en formato de Stream, luego se le pasa el tipo de objeto al que lo queremos convertir
+                user = new ObjectMapper().readValue(request.getInputStream(), User.class); //Del request viene nuestro json con el usuario que manejamos en el jpauserDetailsService y con el primer parámetro le pasamos el json en formato de Stream, luego se le pasa el tipo de objeto al que lo queremos convertir
                 username = user.getUsername();
                 password = user.getPassword();
             } catch (StreamReadException e) {
@@ -66,7 +66,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User)authResult.getPrincipal(); //usuario pero de springsecurity
                 String username = user.getUsername();
                 Collection<? extends GrantedAuthority> roles = authResult.getAuthorities(); //Asignamos los roles que 
-                Claims claims = Jwts.claims().add("authorities", new ObjectMapper().writeValueAsString(roles)).build(); //Construye el claims que es un tipo de información que queresmos agregar al token
+                Claims claims = Jwts.claims().add("authorities", new ObjectMapper().writeValueAsString(roles)).build(); //Construye el claims que es un tipo de información que queremos agregar al token
                 
 
                 String token = Jwts.builder().subject(username).expiration(new Date(System.currentTimeMillis() + 3600000))//El token expira en una hora

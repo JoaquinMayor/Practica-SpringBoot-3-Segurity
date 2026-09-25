@@ -32,7 +32,7 @@ public class SpringSecurityConfig {
 
     @Bean
     AuthenticationManager authenticationManager() throws Exception{
-        return authenticationConfiguration.getAuthenticationManager(); //nos permite obtener el autentication manager de spring security
+        return authenticationConfiguration.getAuthenticationManager(); //nos permite obtener el authentication manager de spring security
     }
     @Bean
     PasswordEncoder passwordEncoder(){ //Configuración de spring security
@@ -48,12 +48,12 @@ public class SpringSecurityConfig {
         .requestMatchers(HttpMethod.GET,"/api/products","/api/products/{id}").hasAnyRole("ADMIN","USER")
         .requestMatchers(HttpMethod.PUT,"/api/products/{id}").hasRole("ADMIN")
         .requestMatchers(HttpMethod.DELETE,"/api/products/{id}").hasRole("ADMIN")
-        .anyRequest().authenticated())//hacemos que a esa direccion sea pública, pero que al resto se le necesite una autentificación
+        .anyRequest().authenticated())//hacemos que a esa dirección sea pública, pero que al resto se le necesite una autentificación
         .addFilter(new JwtAuthenticationFilter(authenticationManager())) //Agregamos el filtro creado
         .addFilter(new JwtValidationFilter(authenticationManager()))
-        .csrf(config ->config.disable())//csrf genera un token único para evitar vulnerabilidad, en este caso lo desactivamos porque estamos trabajando con un apirest y no con vistas, como tymeleaf
+        .csrf(config ->config.disable())//csrf genera un token único para evitar vulnerabilidad, en este caso lo desactivamos porque estamos trabajando con un apirest y no con vistas, como thymeleaf
         .cors(cors-> cors.configurationSource(corsConfigurationSource())) //Le pasamos la configuración desarrollada abajo para que se pueda acceder al front end
-        .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))//Por defecto se guarda con estado en la sesion http
+        .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))//Por defecto se guarda con estado en la sesión http
         .build(); 
     } 
         
@@ -61,12 +61,12 @@ public class SpringSecurityConfig {
     CorsConfigurationSource corsConfigurationSource(){//Configuración para compartir el backend con el front
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowedOriginPatterns(Arrays.asList("*")); //Acá van las rutas
-        config.setAllowedMethods(Arrays.asList("GET","POST","DELETE","PUT")); //Aclaramos en que tipo de métodos los queremos agregar
+        config.setAllowedMethods(Arrays.asList("GET","POST","DELETE","PUT")); //Aclaramos en qué tipo de métodos los queremos agregar
         config.setAllowedHeaders(Arrays.asList("Authorization","Content-Type"));
         config.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", config); //Decimos que métodos queremos que se ejecuten, como es desde la raiz ponemos /** 
+        source.registerCorsConfiguration("/**", config); //Decimos qué métodos queremos que se ejecuten, como es desde la raíz ponemos /** 
         return source;
     }
 
